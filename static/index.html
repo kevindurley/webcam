@@ -123,8 +123,15 @@ $(document).ready(function() {
 		else {
 	        $('#takePhotoButton').addClass('busy');
 			takePhoto(function(err, filename) {
-				if (err) throw err;
-                $('#photofile').attr('src', filename);
+				if (err) {
+					// throw err;
+	                $('#photofile').attr('src', '');
+	                $('#photofile').attr('alt', err.message);
+				}
+				else {
+	                $('#photofile').attr('src', filename);
+	                $('#photofile').attr('alt', filename);
+				}
                 $('#takePhotoButton').removeClass('busy');
 			})
 		}
